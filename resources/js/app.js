@@ -79,15 +79,96 @@ $(function() {
         });
     }
 
-    // 4. Contact Form Validation and Submission Preparation
-    const $forms = $('.needs-validation');
-    $forms.on('submit', function(event) {
+    // 4. Contact Form AJAX Submission with Validation
+    const $form = $('.contact-form');
+    const $submitBtn = $form.find('button[type="submit"]');
+    const $alertContainer = $('#formAlertContainer');
+
+    // Auto-fadeout existing session alerts if present on page load
+    const $existingAlert = $alertContainer.find('.alert');
+    if ($existingAlert.length > 0) {
+        setTimeout(() => {
+            $existingAlert.fadeOut(500, function() {
+                $(this).remove();
+            });
+        }, 5000);
+    }
+
+    $form.on('submit', function(event) {
+        event.preventDefault();
         const form = this;
+
         if (!form.checkValidity()) {
-            event.preventDefault();
             event.stopPropagation();
+            $form.addClass('was-validated');
+            return;
         }
-        $(form).addClass('was-validated');
+
+        $form.addClass('was-validated');
+
+        // Disable submit button and show loading state
+        $submitBtn.prop('disabled', true).html('Sending Message <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>');
+
+        // Perform AJAX POST request
+        $.ajax({
+            url: $form.attr('action'),
+            method: 'POST',
+            data: $form.serialize(),
+            success: function(response) {
+                // Clear any previous alerts
+                $alertContainer.empty();
+
+                // Inject success alert banner
+                const successAlert = `
+                    <div class="alert alert-success alert-dismissible fade show rounded-3 mb-4" role="alert">
+                        <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
+                        ${response.message || 'Thank you! Your message has been sent successfully.'}
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
+                $alertContainer.append(successAlert);
+
+                // Reset form fields and validation classes
+                form.reset();
+                $form.removeClass('was-validated');
+
+                // Auto-fade/hide the success message after 5 seconds
+                setTimeout(() => {
+                    $alertContainer.find('.alert').fadeOut(500, function() {
+                        $(this).remove();
+                    });
+                }, 5000);
+            },
+            error: function(xhr) {
+                $alertContainer.empty();
+                
+                let errorMessage = 'An error occurred while sending your message. Please try again.';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+
+                // Inject error alert banner
+                const errorAlert = `
+                    <div class="alert alert-danger alert-dismissible fade show rounded-3 mb-4" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2" aria-hidden="true"></i>
+                        ${errorMessage}
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
+                $alertContainer.append(errorAlert);
+
+                // Auto-fade/hide the error message after 5 seconds
+                setTimeout(() => {
+                    $alertContainer.find('.alert').fadeOut(500, function() {
+                        $(this).remove();
+                    });
+                }, 5000);
+            },
+            complete: function() {
+                // Restore button state
+                $submitBtn.prop('disabled', false).html('Send Message <i class="bi bi-send-fill ms-2" aria-hidden="true" style="font-size: 0.95rem; line-height: 1;"></i>');
+            }
+        });
     });
 
     // 5. Active Navigation Link on Scroll

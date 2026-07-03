@@ -66,14 +66,16 @@
             <!-- Right Column: Contact Form with Validation -->
             <div class="col-lg-7 reveal">
                 <div class="p-4 p-md-5 bg-white border border-light-subtle rounded-4 shadow-sm">
-                    <!-- Session Success Message -->
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show rounded-3 mb-4" role="alert">
-                            <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
-                            {{ session('success') }}
-                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+                    <!-- Alert Container for AJAX and Session Feedback -->
+                    <div id="formAlertContainer">
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-3 mb-4" role="alert">
+                                <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
+                                {{ session('success') }}
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </div>
 
                     <form action="{{ route('contact.submit') }}" method="POST" class="contact-form needs-validation" novalidate>
                         @csrf

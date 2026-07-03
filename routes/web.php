@@ -39,6 +39,15 @@ Route::post('/contact', function (Request $request) {
         }
     }
 
+    $successMessage = 'Thank you! Your message has been sent successfully. We will get in touch soon.';
+
+    if ($request->ajax()) {
+        return response()->json([
+            'success' => true,
+            'message' => $successMessage
+        ]);
+    }
+
     // Return back to the landing page with a success status
-    return back()->with('success', 'Thank you! Your message has been sent successfully. We will get in touch soon.');
+    return back()->with('success', $successMessage);
 })->name('contact.submit');
