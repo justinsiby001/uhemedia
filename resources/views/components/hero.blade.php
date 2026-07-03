@@ -13,7 +13,7 @@
                         Media & Marketing Agency
                     </span>
                     <h1 class="display-4 fw-extrabold lh-sm mb-4 animate-fade-up-1">
-                        Creative Marketing <br>
+                        <span class="interactive-title">Creative Marketing</span> <br>
                         That <span class="text-gold">Delivers Results</span>.
                     </h1>
                     <p class="lead text-muted mb-5 animate-fade-up-2">

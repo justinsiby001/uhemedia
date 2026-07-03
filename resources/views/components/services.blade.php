@@ -4,7 +4,7 @@
             <span class="text-gold fw-bold text-uppercase tracking-wider mb-2 d-block" style="font-size: 0.85rem; letter-spacing: 0.1em;">
                 Our Services
             </span>
-            <h2 class="h1 fw-extrabold mb-3">End-to-End Marketing Solutions</h2>
+            <h2 class="h1 fw-extrabold mb-3"><span class="interactive-title">End-to-End Marketing Solutions</span></h2>
             <div class="mx-auto" style="width: 60px; height: 3px; background-color: var(--primary-gold); border-radius: 2px;"></div>
         </div>
 

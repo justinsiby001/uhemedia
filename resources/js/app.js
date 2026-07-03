@@ -193,4 +193,19 @@ $(function() {
             $navLinks.filter(`[href="#${currentSectionId}"]`).addClass('active');
         }
     });
+
+    // 6. Interactive Title Hover Effect
+    $('.interactive-title').hover(
+        function() {
+            $(this).css({
+                'letter-spacing': '0.02em',
+                'transition': 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+            });
+        },
+        function() {
+            $(this).css({
+                'letter-spacing': '-0.03em'
+            });
+        }
+    );
 });

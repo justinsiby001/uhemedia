@@ -26,10 +26,49 @@ body {
 }
 
 /* Custom Typography */
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
+    font-family: 'Archivo Black', -apple-system, sans-serif;
+    font-weight: 400;
+    color: var(--dark-text);
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+h3, h4, h5, h6 {
+    font-family: 'Instrument Sans', -apple-system, sans-serif;
     font-weight: 700;
     color: var(--dark-text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+}
+
+/* Interactive Typography Underline Effect */
+.interactive-title {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.interactive-title::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-gold);
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interactive-title:hover {
+    color: var(--primary-gold);
+}
+
+.interactive-title:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 p {

@@ -7,7 +7,7 @@
                     <span class="text-gold fw-bold text-uppercase tracking-wider mb-2 d-block" style="font-size: 0.85rem; letter-spacing: 0.1em;">
                         Let's Work Together
                     </span>
-                    <h2 class="h1 fw-extrabold mb-4">Have a project in mind?<br>We'd love to hear from you.</h2>
+                    <h2 class="h1 fw-extrabold mb-4"><span class="interactive-title">Have a project in mind?</span><br>We'd love to hear from you.</h2>
                     <p class="text-muted mb-5">
                         Whether you are planning a high-impact digital campaign, launching video production, or designing a physical brand activation, we have the team to make it a success.
                     </p>

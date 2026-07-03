@@ -4,7 +4,7 @@
             <span class="text-gold fw-bold text-uppercase tracking-wider mb-2 d-block" style="font-size: 0.85rem; letter-spacing: 0.15em;">
                 Our Process
             </span>
-            <h2 class="h1 fw-extrabold text-white mb-3">Simple Process. Powerful Results.</h2>
+            <h2 class="h1 fw-extrabold text-white mb-3"><span class="interactive-title text-white">Simple Process. Powerful Results.</span></h2>
             <div class="mx-auto" style="width: 60px; height: 3px; background-color: var(--primary-gold); border-radius: 2px;"></div>
         </div>
 
