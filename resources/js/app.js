@@ -208,4 +208,104 @@ $(function() {
             });
         }
     );
+
+    // 7. Interactive Logo Marquee (Auto-scroll & Drag-scroll)
+    const $marquee = $('.logo-marquee');
+    if ($marquee.length > 0) {
+        const marquee = $marquee[0];
+        let isDown = false;
+        let startX;
+        let scrollLeftVal;
+        let animationFrameId;
+        const scrollSpeed = 0.8; // px per frame
+        let isPaused = false;
+
+        // Auto-scroll loop
+        function step() {
+            if (!isPaused && !isDown) {
+                marquee.scrollLeft += scrollSpeed;
+                
+                // Once we reach half of scrollWidth (which corresponds to one full group of logos)
+                // we reset to 0 for infinite, seamless looping
+                const maxScroll = (marquee.scrollWidth - marquee.clientWidth) / 2;
+                if (marquee.scrollLeft >= maxScroll) {
+                    marquee.scrollLeft = 0;
+                }
+            }
+            animationFrameId = requestAnimationFrame(step);
+        }
+
+        // Start animation
+        animationFrameId = requestAnimationFrame(step);
+
+        // Mouse Events
+        $marquee.on('mousedown', (e) => {
+            isDown = true;
+            isPaused = true;
+            startX = e.pageX - marquee.offsetLeft;
+            scrollLeftVal = marquee.scrollLeft;
+        });
+
+        $marquee.on('mouseleave mouseup', () => {
+            if (isDown) {
+                isDown = false;
+                setTimeout(() => {
+                    isPaused = false;
+                }, 1000);
+            }
+        });
+
+        $marquee.on('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - marquee.offsetLeft;
+            const walk = (x - startX) * 1.5; // Drag sensitivity
+            marquee.scrollLeft = scrollLeftVal - walk;
+
+            // Enforce infinite boundaries during drag
+            const maxScroll = (marquee.scrollWidth - marquee.clientWidth) / 2;
+            if (marquee.scrollLeft >= maxScroll) {
+                marquee.scrollLeft = 0;
+                startX = e.pageX - marquee.offsetLeft;
+                scrollLeftVal = 0;
+            } else if (marquee.scrollLeft <= 0) {
+                marquee.scrollLeft = maxScroll;
+                startX = e.pageX - marquee.offsetLeft;
+                scrollLeftVal = maxScroll;
+            }
+        });
+
+        // Touch Events for mobile swipe
+        $marquee.on('touchstart', (e) => {
+            isDown = true;
+            isPaused = true;
+            startX = e.originalEvent.touches[0].pageX - marquee.offsetLeft;
+            scrollLeftVal = marquee.scrollLeft;
+        });
+
+        $marquee.on('touchend', () => {
+            isDown = false;
+            setTimeout(() => {
+                isPaused = false;
+            }, 1000);
+        });
+
+        $marquee.on('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.originalEvent.touches[0].pageX - marquee.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            marquee.scrollLeft = scrollLeftVal - walk;
+
+            const maxScroll = (marquee.scrollWidth - marquee.clientWidth) / 2;
+            if (marquee.scrollLeft >= maxScroll) {
+                marquee.scrollLeft = 0;
+                startX = e.originalEvent.touches[0].pageX - marquee.offsetLeft;
+                scrollLeftVal = 0;
+            } else if (marquee.scrollLeft <= 0) {
+                marquee.scrollLeft = maxScroll;
+                startX = e.originalEvent.touches[0].pageX - marquee.offsetLeft;
+                scrollLeftVal = maxScroll;
+            }
+        });
+    }
 });
