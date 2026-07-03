@@ -26,7 +26,8 @@ body {
 }
 
 /* Custom Typography */
-h1, h2 {
+h1,
+h2 {
     font-family: 'Archivo Black', -apple-system, sans-serif;
     font-weight: 400;
     color: var(--dark-text);
@@ -34,7 +35,10 @@ h1, h2 {
     text-transform: uppercase;
 }
 
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Instrument Sans', -apple-system, sans-serif;
     font-weight: 700;
     color: var(--dark-text);
@@ -115,7 +119,8 @@ html {
     border: 1px solid var(--primary-gold);
 }
 
-.btn-gold:hover, .btn-gold:focus {
+.btn-gold:hover,
+.btn-gold:focus {
     background-color: var(--primary-gold-dark);
     border-color: var(--primary-gold-dark);
     color: #ffffff;
@@ -133,7 +138,8 @@ html {
     background-color: transparent;
 }
 
-.btn-outline-dark:hover, .btn-outline-dark:focus {
+.btn-outline-dark:hover,
+.btn-outline-dark:focus {
     background-color: var(--dark-text);
     color: #ffffff;
     transform: translateY(-2px);
@@ -150,7 +156,8 @@ html {
     border: 1px solid var(--dark-text);
 }
 
-.btn-dark:hover, .btn-dark:focus {
+.btn-dark:hover,
+.btn-dark:focus {
     background-color: #333333;
     border-color: #333333;
     transform: translateY(-2px);
@@ -173,6 +180,18 @@ html {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     padding: 0.75rem 0;
 }
+
+
+.navbar-collapse {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    /* border-radius: 12px; */
+    /* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); */
+    margin-top: 15px;
+    /* border: 1px solid rgba(0, 0, 0, 0.05); */
+}
+
 
 .navbar-brand img {
     height: 36px;
@@ -199,7 +218,8 @@ html {
     transition: var(--transition-smooth);
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: calc(100% - 2rem);
 }
 
@@ -232,7 +252,7 @@ html {
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--primary-gold-rgb), 0.1) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(var(--primary-gold-rgb), 0.1) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
 .hero-image-container {
@@ -428,7 +448,7 @@ html {
     top: -10px;
     left: calc(50% - 40px);
     border: 3px solid #111111;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .process-icon-circle {
@@ -468,7 +488,7 @@ html {
     border-radius: 16px;
     box-shadow: var(--card-shadow);
     transition: var(--transition-smooth);
-    border: 1px solid rgba(0,0,0,0.02);
+    border: 1px solid rgba(0, 0, 0, 0.02);
     text-align: center;
 }
 
@@ -680,6 +700,7 @@ footer {
     padding-top: 6rem;
     padding-bottom: 6rem;
 }
+
 @media (min-width: 992px) {
     .py-7 {
         padding-top: 8rem;
@@ -711,12 +732,19 @@ footer {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-6px);
     }
+
     60% {
         transform: translateY(-3px);
     }
@@ -728,6 +756,7 @@ footer {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -752,8 +781,10 @@ footer {
 .logo-marquee {
     position: relative;
     overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
     user-select: none;
     display: flex;
     width: 100%;
@@ -762,7 +793,8 @@ footer {
 }
 
 .logo-marquee::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
+    /* Chrome/Safari */
 }
 
 .logo-marquee:active {
@@ -776,7 +808,8 @@ footer {
     height: 100%;
     position: absolute;
     width: 15%;
-    z-index: 3; /* Elevated z-index to overlay scrolling logos */
+    z-index: 3;
+    /* Elevated z-index to overlay scrolling logos */
     pointer-events: none;
 }
 
@@ -828,8 +861,8 @@ footer {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
 }
-
